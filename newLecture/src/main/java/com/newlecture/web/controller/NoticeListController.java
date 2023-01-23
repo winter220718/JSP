@@ -1,13 +1,6 @@
 package com.newlecture.web.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -17,61 +10,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.newlecture.web.entity.Notice;
-
+import com.newlecture.web.service.NoticeService;
 
 @WebServlet("/notice/list")
 public class NoticeListController extends HttpServlet {
-	
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		
-		List<Notice> list = new ArrayList<>();
-		
-		
-		String url = "jdbc:oracle:thin:@localhost:1521/XE";
-		String sql = "SELECT * FROM NOTICE";
+		// list?f=title&q=a
 
-		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			Connection con = DriverManager.getConnection(url, "test_user", "1234");
-			Statement st = con.createStatement();
-			ResultSet rs = st.executeQuery(sql);
-			
-			while (rs.next()) {
-				
-				int id = rs.getInt("ID");
-				String title = rs.getString("TITLE");
-				String writerId = rs.getString("WRITER_ID");
-				String hit = rs.getString("HIT");
-				Date regDate = rs.getDate("REGDATE");
-				String files = rs.getString("FILES");
-				String content = rs.getString("CONTENT");
-				
-				Notice notice = new Notice(id, title, writerId, hit, regDate, files, content);
-			
-				list.add(notice);
-				
-				
-			}
-			
-			
-			
-			rs.close();
-			st.close();
-			con.close();
-			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String field_ = req.getParameter("f");
+		String query_ = req.getParameter("q");
+
+		String field = "title";
+		if (field_ != null) {
+			field = field_;
 		}
 
-	
+		String query = "";
+		if (query_ != null) {
+			query = query_;
+
+		}
+
+		NoticeService service = new NoticeService();
+		List<Notice> list = service.getNoticeList(field, query, 1);
+
 		req.setAttribute("list", list);
 		req.getRequestDispatcher("/WEB-INF/view/notice/list.jsp").forward(req, resp);
-	
+
 	}
 }
