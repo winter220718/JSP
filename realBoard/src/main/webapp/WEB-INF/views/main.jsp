@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>게시판 만들어보기</title>
 </head>
 <body>
 	<h3># 게시판 만들어보기(1)</h3>
@@ -24,5 +24,7 @@
 		<li>목록 페이지의 적당한 위치에 글 쓰기 버튼을 만들고 그 버튼을 누르면 글을 쓸 수 있는 폼이 있는 페이지로
 			넘어가기</li>
 	</ul>
+	
+	<a href="list">게시판 보러가기</a>
 </body>
 </html>

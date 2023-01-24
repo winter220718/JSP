@@ -1,13 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-<meta charset="EUC-KR">
-<title>°Ô½ÃÆÇ</title>
+<meta charset="UTF-8">
+<title>ì •ìˆ˜ì •ì˜ ê²Œì‹œíŒ</title>
 </head>
 <body>
+
 
    <table>
       <tr>
@@ -15,26 +16,24 @@
          <th>Title</th>
          <th>Name</th>
          <th>View</th>
-         <th>ÀÛ¼º½Ã°£</th>
-         <th>µûºÀ¾ÆÀÌÄÜ</th>
+         <th>ì‘ì„±ì‹œê°„</th>
+         <th>ë”°ë´‰ì•„ì´ì½˜</th>
       </tr>
-      
+       
       <c:forEach items="${boards}" var="board">
          <tr>
             <td>${board.board_id}</td>
-            <td><a href="./contents?board_id=${board.board_id}">${board.write_title}</td>
+            <td><a href="./board/contents?board_id=${board.board_id }&?">
+            ${board.write_title}</a></td>
             <td>${board.writer_id}</td>
             <td>${board.write_view}</td>
-            <td>${board.creationDateTime}</td> <!-- ¿À´Ã°Ç ½Ã°£À¸·Î.. ¾îÁ¦ ÀÌÀüÀº ³¯Â¥·Î -->
+            <td>${board.creationDateTime}</td>
             <td>${board.write_recommend}</td>
          </tr>
          <!-- <li id="board${board.board_id}">${board}</li> -->
       </c:forEach>
    </table>
-   
-   <c:forEach begin="${pagination_start}" end="${pagination_end}" var="i">
-      <a href="./list?page=${i}">${i}</a>
-   </c:forEach>
+
 
 </body>
 </html>
