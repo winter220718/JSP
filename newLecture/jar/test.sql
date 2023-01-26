@@ -30,15 +30,31 @@ CREATE TABLE MEMBER_ROLE
      ROLE_ID		VARCHAR2(50)
 );
 
+
+
 commit;
 
 
 SELECT * FROM NOTICE;
-INSERT INTO NOTICE VALUES(ID_SEQ.NEXTVAL, '연락 바랍니다. 010-1111-1111', 'quest','연락처를 남깁니다',sysdate,3, null);
-INSERT INTO NOTICE VALUES(ID_SEQ.NEXTVAL, 'ㅎㅇㅎㅇ', 'quest','연락처를 남깁니다',sysdate,3, null);
-INSERT INTO NOTICE VALUES(ID_SEQ.NEXTVAL, 'test', '수택동 카리나','ㅇㅇ',sysdate,23, null);
-INSERT INTO NOTICE VALUES(ID_SEQ.NEXTVAL, 'test', '수택동 윈터','엥',sysdate,13, null);
-INSERT INTO NOTICE VALUES(ID_SEQ.NEXTVAL, 'test', '뀨','ㅎㅇ',sysdate,53, null);
+INSERT INTO NOTICE VALUES(ID_SEQ.NEXTVAL, '연락 바랍니다. 010-1111-1111', 'quest','연락처를 남깁니다',sysdate,0, null);
+INSERT INTO NOTICE VALUES(ID_SEQ.NEXTVAL, 'ㅎㅇㅎㅇ', 'quest','연락처를 남깁니다',sysdate,0, null);
+INSERT INTO NOTICE VALUES(ID_SEQ.NEXTVAL, 'test', '수택동 카리나','ㅇㅇ',sysdate,0, null);
+INSERT INTO NOTICE VALUES(ID_SEQ.NEXTVAL, 'test', '수택동 윈터','엥',sysdate,0, null);
+INSERT INTO NOTICE VALUES(ID_SEQ.NEXTVAL, 'test', '뀨','ㅎㅇ',sysdate,0, null);
 INSERT INTO NOTICE VALUES(ID_SEQ.NEXTVAL, 'test1', '망우동사람','ㄴㄴㄴ',sysdate,0, null);
 INSERT INTO NOTICE VALUES(ID_SEQ.NEXTVAL, 'test', '프로당근러','죠리퐁',sysdate,1, null);
+
 CREATE SEQUENCE ID_SEQ;
+
+--조인문장
+select N.ID, N.TITLE, N.WRITER_ID, N.REGDATE, N.HIT, N.FILES, COUNT(C.ID) CMT_COUNT
+from notice N LEFT JOIN "COMMENT" C ON N.ID = C.NOTICE_ID
+GROUP BY N.ID, N.TITLE, N.WRITER_ID, N.REGDATE, N.HIT, N.FILES
+order by n.regdate desc;
+
+--결합?
+SELECT * FROM (
+SELECT ROWNUM NUM, N.* FROM (SELECT * FROM NOTICE WHERE TITLE LIKE '%%' ORDER BY REGDATE DESC) N) 
+WHERE NUM BETWEEN 1 AND 10
+
+
