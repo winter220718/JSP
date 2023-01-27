@@ -1,4 +1,4 @@
-package com.newlecture.web.controller;
+package com.newlecture.web.controller.notice;
 
 import java.io.IOException;
 import java.util.List;

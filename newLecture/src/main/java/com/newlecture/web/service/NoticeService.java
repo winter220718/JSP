@@ -14,6 +14,39 @@ import com.newlecture.web.entity.NoticeView;
 
 // 서비스 클래스 구현하기, 컨트롤러에서는 그냥 갖다 쓰면 된다
 public class NoticeService {
+	
+	public int removeNoticeAll(int[] ids) {
+		//몇개가 삭제되었는지 체크
+		return 0;
+	}
+	
+	public int pubNoticeAll(int[] ids){
+		//몇개가 공개됐는지 체크
+		
+		return 0;
+	}
+	
+	public int insertNotice(Notice notice){
+		return 0;
+		
+	}
+	
+	public int deleteNotice(int id){
+		//삭제되면 1반환
+		return 0;
+		
+	}
+	
+	public int updateNotice(Notice notice){
+		
+		return 0;
+	}
+	
+	public List<Notice> getNoticeNewstList(){
+		
+		return null;
+	}
+	
 
 	public List<NoticeView> getNoticeList() {
 
