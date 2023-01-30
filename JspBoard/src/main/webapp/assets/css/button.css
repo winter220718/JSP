@@ -1,0 +1,13 @@
+a.btn {
+	background-color: gray;
+	color: white;
+	text-decoration: none;
+	padding: 5px 10px;
+	display: inline-block;
+	border-radius: 3px;
+}
+
+a.btn:active {
+	color: gray;
+	background-color: black;
+}
